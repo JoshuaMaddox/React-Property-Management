@@ -15,6 +15,10 @@ const ToAPIActions = {
 
   getAllProperties() {
     API.getAllProperties()
+  },
+
+  sendTenantToEdit(editedTenant, tenantId) {
+    API.sendTenantToEdit(editedTenant, tenantId)
   }
 }
 export default ToAPIActions

@@ -12,21 +12,15 @@ router.route('/')
   .post((req, res) => {
     Tenant.create(req.body)
       .then(tenant => { 
-        console.log('tenant in tenants.js: ', tenant)
         res.send(tenant) 
       })
       .catch(err => { res.status(400).send(err) })
   })
 
-  router.route('/:id')
+  router.route('/edit/:id')
     .put((req, res) => {
-      Tenant.findById(req.params.id)
+      Tenant.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true})
       .then(tenant => {
-        tenant.haveBirthday((err, savedTenant) => {
-
-        })
-      })
-      .then(Tenant => {
         res.send(tenant)
       })
       .catch(err => {

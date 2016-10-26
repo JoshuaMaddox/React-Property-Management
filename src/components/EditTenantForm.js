@@ -35,8 +35,7 @@ export default class EditTenantForm extends Component {
   editTenant(e) {
     let tenantId = e.target.id
     const { first, last, rent, email, phone, moveIn, moveOut } = this.refs
-    console.log('rent', typeof rent.value)
-    let newTenant = {
+    let editedTenant = {
       name: {
         first: first.value,
         last: last.value
@@ -47,8 +46,8 @@ export default class EditTenantForm extends Component {
       moveInDate: moveIn.value,
       moveOutDate: moveOut.value
     }
-    ToAPIActions.sendNewTenant(newTenant)
-    ServerActtion.getTenantToEdit(tenantId)
+    console.log('editTenant in EditTenantForm: ', editedTenant)
+    ToAPIActions.sendTenantToEdit(editedTenant, tenantId)
   }
 
   render() {
@@ -71,7 +70,7 @@ export default class EditTenantForm extends Component {
             <input type="date" ref='moveIn' className="formInput" defaultValue={tenant.moveInDate}/>
             <label>Expected Move Out Date</label>
             <input type="date" ref='moveOut' className="formInput" defaultValue={tenant.moveOutDate}/>
-            <button id={tenant._id} className='mainBtnType' onClick={this.sendTenantToEdit}>SUBMIT EDIT</button>
+            <button id={tenant._id} className='mainBtnType' onClick={this.editTenant}>SUBMIT EDIT</button>
           </div>  
         )
       })

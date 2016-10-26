@@ -8,25 +8,33 @@ const API = {
     post(`/api/tenants`, newTenant)
       .then(res => {
         let { data } = res
-        console.log('data in api ', data)
         browserHistory.push('/tenants')
       })
       .catch(console.error)
   },
+
   getAllTenants(){
     get(`/api/tenants`)
       .then(res => {
-        console.log('res.data: ', res.data)
         let { data } = res
         ServerActions.receiveAllTenants(data)
       })
+  },
+
+  sendTenantToEdit(editedTenant, tenantId) {
+    put(`/api/tenants/edit/${tenantId}`, editedTenant)
+      .then(res => {
+        let { data } = res
+        console.log('data in api sendTenantToEdit: ', data)
+        browserHistory.push('/tenants')
+      })
+      .catch(console.error)
   },
 
   sendNewProperty(newProperty) {
     post(`/api/properties`, newProperty)
       .then(res => {
         let { data } = res
-        console.log('data in api ', data)
         browserHistory.push('/properties')
       })
       .catch(console.error)
@@ -35,7 +43,6 @@ const API = {
   getAllProperties(){
     get(`/api/properties`)
       .then(res => {
-        console.log('res.data: ', res.data)
         let { data } = res
         ServerActions.receiveAllProperties(data)
       })
