@@ -3,6 +3,6 @@ const router = express.Router()
 
 // connect other routers here!
 router.use('/tenants', require('./tenants'))
-router.use('/landlords', require('./landlords'))
+router.use('/properties', require('./properties'))
 
 module.exports = router

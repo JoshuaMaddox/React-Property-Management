@@ -32,7 +32,7 @@ export default class Layout extends Component {
   }
 
   toLandlordPage() {
-    browserHistory.push('/landlord')
+    browserHistory.push('/property')
   }
 
   render() {
@@ -42,7 +42,7 @@ export default class Layout extends Component {
         <h1>Which Are You?</h1>
         <div className="flexBoxRow">
           <button className="mainBtn" onClick={this.toClientPage}>Tenant</button>
-          <button className="mainBtn" onClick={this.toLandlordPage}>Landlord</button>
+          <button className="mainBtn" onClick={this.toLandlordPage}>Property Owner</button>
         </div>
       </div>
     )

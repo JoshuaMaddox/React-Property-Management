@@ -1,7 +1,9 @@
 import { EventEmitter } from 'events'
 import AppDispatcher from '../AppDispatcher'
+import { browserHistory } from 'react-router'
 
 let _allTenants;
+let _tenantToEdit = []
 
 class TenantsStore extends EventEmitter {
   constructor(){
@@ -10,9 +12,21 @@ class TenantsStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch(action.type) {
         case 'RECEIVE_ALL_TENANTS':
-        _allTenants = action.payload.allTenants
-        this.emit('CHANGE')
-        break
+          _allTenants = action.payload.allTenants
+          this.emit('CHANGE')
+          break
+        case 'RECEIVE_TENANT_ID':
+          _tenantToEdit = _allTenants.filter((tenant) => {
+            if(tenant._id === action.payload.tenantId) {
+              return tenant
+            } else {
+              return
+            }
+          })
+          console.log('_tenantToEdit in the TenantsStore: ', _tenantToEdit)
+          browserHistory.push('/tenants/edit')
+          this.emit('CHANGE')
+          break
       }
     })
   }
@@ -27,6 +41,10 @@ class TenantsStore extends EventEmitter {
 
   getAllTenants() {
     return _allTenants
+  }
+
+  getTenantToEdit() {
+    return _tenantToEdit
   }
 
 }

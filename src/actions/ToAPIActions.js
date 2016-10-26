@@ -7,6 +7,14 @@ const ToAPIActions = {
 
   getAllTenants() {
     API.getAllTenants()
+  },
+
+  sendNewProperty(newProperty) {
+    API.sendNewProperty(newProperty)
+  },
+
+  getAllProperties() {
+    API.getAllProperties()
   }
 }
 export default ToAPIActions

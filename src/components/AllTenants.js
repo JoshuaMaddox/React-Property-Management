@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import ToAPIActions from '../actions/ToAPIActions'
+import ServerActions from '../actions/ServerActions'
 import TenantsStore from '../stores/TenantsStore'
 
 export default class Tenent extends Component {
@@ -11,6 +12,8 @@ export default class Tenent extends Component {
     }
     this._onChange = this._onChange.bind(this)
     this.returnHome = this.returnHome.bind(this)
+    this.editTenant = this.editTenant.bind(this)
+    this.deleteTenant = this.deleteTenant.bind(this)
   }
 
   componentWillMount() {
@@ -28,8 +31,17 @@ export default class Tenent extends Component {
     })
   }
 
-  returnHome() {
+  returnHome(e) {
     browserHistory.push('/')
+  }
+
+  editTenant(e) {
+    let tenantId = e.target.id
+    ServerActions.getTenantToEdit(tenantId)
+  }
+
+  deleteTenant(e) {
+    let tenantId = e.target.id
   }
 
   render() {
@@ -51,8 +63,8 @@ export default class Tenent extends Component {
             <p>{tenant.moveInDate}</p>
             <p>{tenant.moveOutDate}</p>
             <div className="tenantBtns">
-              <button className='tenantBtn'>Edit</button>
-              <button className='tenantBtn'>Delete</button>
+              <button id={tenant._id} onClick={this.editTenant} className='tenantBtn'>Edit</button>
+              <button id={tenant._id} className='tenantBtn'>Delete</button>
             </div>
           </div>  
         )

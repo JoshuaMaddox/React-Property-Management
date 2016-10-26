@@ -1,37 +1,37 @@
 const express = require('express')
 const router = express.Router()
 
-const Landlord = require('../models/Landlord')
+const Property = require('../models/Property')
 
 router.route('/')
   .get((req, res) => {
-    Landlord.find()
-      .then(landlords => { res.send(landlords) })
+    Property.find()
+      .then(properties => { res.send(properties) })
       .catch(err => { res.status(400).send(err) })
   })
   .post((req, res) => {
-    Landlord.create(req.body)
-      .then(landlord => { res.send(landlord) })
+    Property.create(req.body)
+      .then(property => { res.send(property) })
       .catch(err => { res.status(400).send(err) })
   })
 
 router.route('/:id')
   .get((req, res) => {
-    Landlord.findById(req.params.id)
+    Property.findById(req.params.id)
       .populate('tenants')
-      .then(landlord => res.send(landlord))
+      .then(property => res.send(property))
       .catch(err => res.status(400).send(err))
   }) 
 
-router.put('/:landlordId/addLandlord/:landlordId', (req, res) => {
-  let { landlordId, tenantId } = req.params;
-  Landlord.findById(landlordId)
-    .then( group => {
-      landlord.tenants.push(tenantId)
-      return group.save()
+router.put('/:PropertyId/addProperty/:PropertyId', (req, res) => {
+  let { PropertyId, tenantId } = req.params;
+  Property.findById(PropertyId)
+    .then( property => {
+      Property.tenants.push(tenantId)
+      return property.save()
     })
-    .then(savedLandlord => {
-      res.send(savedLandlord)
+    .then(savedProperty => {
+      res.send(savedProperty)
     })
     .catch(err => res.status(400).send(err))
 })
