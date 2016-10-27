@@ -72,7 +72,6 @@ export default class AllProperties extends Component {
     if(allProperties) {
       propertiesShow = allProperties.map((property) => {
         {if(property.tenants) {
-          console.log('property.tenants: ', property.tenants)
           tenantsBtns = property.tenants.map((tenant) => {
             return (
               <button key={tenant._id} id={tenant._id} data-propertyId={property._id} onClick={this.removeTenant} className="tenantBtns">{tenant.name.first} {tenant.name.last}</button>

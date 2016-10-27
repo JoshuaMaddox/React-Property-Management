@@ -47,7 +47,6 @@ export default class EditTenantForm extends Component {
       moveInDate: moveIn.value,
       moveOutDate: moveOut.value
     }
-    console.log('editTenant in EditTenantForm: ', editedTenant)
     ToAPIActions.sendTenantToEdit(editedTenant, tenantId)
   }
 

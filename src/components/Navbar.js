@@ -16,6 +16,7 @@ export default class Navbar extends Component {
           <li className='navItem'><Link to={'/tenants'}>View Tenants</Link></li>
           <li className='navItem'><Link to={'/properties'}>View Properties</Link></li>
           <li className='navItem'><Link to={'/properties/property/new'}>Add Property</Link></li>
+          <li className='navItem'><Link to={'/properties/financials'}>Financials</Link></li>
         </nav>
       </div>
     )

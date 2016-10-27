@@ -39,6 +39,10 @@ const ToAPIActions = {
 
   deleteProperty(propertyId) {
     API.deleteProperty(propertyId)
+  },
+
+  getFinancials(){
+    API.getFinancials()
   }
 
 }

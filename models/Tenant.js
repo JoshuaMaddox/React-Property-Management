@@ -14,19 +14,6 @@ const tenantSchema = new mongoose.Schema({
   tags: [{type: String, maxlength: 100}]
 })
 
-tenantSchema.statics.findFemale = function() {
-  return this.find({ gender: 'female'})
-}
-
-tenantSchema.methods.greeting = function() {
-  console.log(`Hi I'm ${this.name.first}`)
-}
-
-tenantSchema.methods.haveBirthday = function(cb) {
-  this.age++;
-  return this.save(cb)
-}
-
 Tenant = mongoose.model('Tenant', tenantSchema)
 
 module.exports = Tenant

@@ -23,7 +23,6 @@ class TenantsStore extends EventEmitter {
               return
             }
           })
-          console.log('_tenantToEdit in the TenantsStore: ', _tenantToEdit)
           browserHistory.push('/tenants/edit')
           this.emit('CHANGE')
           break

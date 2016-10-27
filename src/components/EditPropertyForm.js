@@ -57,7 +57,6 @@ export default class EditPropertyForn extends Component {
     let propertyShow;
 
     if(propertyToEdit) {
-      console.log('propertyToEdit[0].tenants ', propertyToEdit[0].tenants)
       propertyShow = propertyToEdit.map((property) => {
         return (
           <div className="formFlexBox" key={property._id}>
@@ -76,7 +75,6 @@ export default class EditPropertyForn extends Component {
             <label>Expected Move Out Date</label>
             <input type="text" ref='landlordPhone' className="formInput" defaultValue={property.landlordPhone}/>
             <button id={property._id} className='mainBtnType' onClick={this.editProperty}>SUBMIT EDIT</button>
-
           </div>  
         )
       })

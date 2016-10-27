@@ -26,7 +26,6 @@ export default class Property extends Component {
       landlordName: landlordName.value,
       landlordPhone: landlordPhone.value
     }
-    console.log('newProperty: ', newProperty)
     ToAPIActions.sendNewProperty(newProperty)
   }
 
@@ -35,8 +34,6 @@ export default class Property extends Component {
     return (
       <div className="mainRow">
       <Navbar />
-        <h1>Property Page</h1>
-        <button className='mainBtnType' onClick={this.returnHome}>Back To Home</button>
         <div className="formFlexBox">
           <input type="text" ref='name' className="formInput" placeholder='Property Name'/>
           <input type="number" ref='rentPrice' className="formInput" min="1" max="20000"/>

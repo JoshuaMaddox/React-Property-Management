@@ -26,7 +26,18 @@ router.route('/edit/:id')
     .catch(err => {
       res.status(400).send(err)
     })
-})
+  })
+
+router.route('/financials')
+  .get((req, res) => {
+    Property.calcFinancials()
+      .then(financials => {
+        res.send(financials)
+      })
+      .catch(err => {
+        res.status(400).send(err)
+      })
+  })
 
 router.route('/:id')
   .get((req, res) => {

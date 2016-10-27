@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router'
 
 let _allProperties;
 let _propertyToPopulate
+let _financialData
 
 class PropertiesStore extends EventEmitter {
   constructor(){
@@ -12,9 +13,9 @@ class PropertiesStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch(action.type) {
         case 'RECEIVE_ALL_PROPERTIES':
-        _allProperties = action.payload.allProperties
-        this.emit('CHANGE')
-        break
+          _allProperties = action.payload.allProperties
+          this.emit('CHANGE')
+          break
         case 'RECEIVE_PROPERTY_ID':
           _propertyToPopulate = _allProperties.filter((property) => {
             if(property._id === action.payload.propertyId) {
@@ -23,6 +24,10 @@ class PropertiesStore extends EventEmitter {
               return
             }
           })
+          this.emit('CHANGE')
+          break
+        case 'RECEIVE_FINANCIAL_DATA':
+          _financialData = action.payload.financialData
           this.emit('CHANGE')
           break
       }
@@ -43,6 +48,10 @@ class PropertiesStore extends EventEmitter {
 
   getPropertyToPopulate() {
     return _propertyToPopulate
+  }
+
+  getFinancialData() {
+    return _financialData
   }
 
 }

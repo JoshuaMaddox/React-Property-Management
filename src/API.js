@@ -25,7 +25,7 @@ const API = {
     put(`/api/tenants/edit/${tenantId}`, editedTenant)
       .then(res => {
         let { data } = res
-        browserHistory.push('/tenants')
+        browserHistory.push(`tenants/tenant/${tenantId}`)
       })
       .catch(console.error)
   },
@@ -43,7 +43,7 @@ const API = {
     put(`/api/properties/${propId}/addTenant/${tenId}`)
       .then(res => {
         let { data } = res
-        console.log('I am addTenant res in API.js', data)
+        browserHistory.push('')
       })
   },
 
@@ -51,7 +51,6 @@ const API = {
     put(`/api/properties/${propertyId}/removeTenant/${tenantId}`)
       .then(res => {
         let { data } = res
-        console.log('removeTenant data: ', data)
         ServerActions.receiveAllProperties(data)
       })
   },
@@ -89,6 +88,14 @@ const API = {
         ServerActions.receiveAllProperties(data)
       })
       .catch(console.error)
+  },
+
+  getFinancials(){
+    get(`/api/properties/financials`)
+      .then(res => {
+        let { data } = res
+        ServerActions.receiveFinancials(data)
+      })
   }
   
   

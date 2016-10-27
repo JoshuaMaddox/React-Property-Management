@@ -27,6 +27,13 @@ const ServerActions = {
       type: 'RECEIVE_PROPERTY_ID',
       payload: { propertyId }
     })
+  },
+
+  receiveFinancials(financialData) {
+     AppDispatcher.dispatch({
+      type: 'RECEIVE_FINANCIAL_DATA',
+      payload: { financialData }
+    })
   }
 
 }

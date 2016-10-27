@@ -17,7 +17,6 @@ export default class Tenant extends Component {
    submitTenant(e) {
     e.preventDefault()
     const { first, last, rent, email, phone, moveIn, moveOut } = this.refs
-    console.log('rent', typeof rent.value)
     let newTenant = {
       name: {
         first: first.value,
@@ -38,8 +37,6 @@ export default class Tenant extends Component {
     return (
       <div className="mainRow">
         <Navbar />
-        <h1>Tenent Page</h1>
-          <button className='mainBtnType' onClick={this.returnHome}>Home</button>
          <div className="formFlexBox">
           <input type="text" ref='first' className="formInput" placeholder='First Name'/>
           <input type="text" ref='last' className="formInput" placeholder='Last Name'/>
