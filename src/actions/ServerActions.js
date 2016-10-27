@@ -20,7 +20,15 @@ const ServerActions = {
       type: 'RECEIVE_TENANT_ID',
       payload: { tenantId }
     })
+  },
+
+  getPropertyToEdit(propertyId) {
+    AppDispatcher.dispatch({
+      type: 'RECEIVE_PROPERTY_ID',
+      payload: { propertyId }
+    })
   }
+
 }
 
 export default ServerActions

@@ -25,7 +25,6 @@ const API = {
     put(`/api/tenants/edit/${tenantId}`, editedTenant)
       .then(res => {
         let { data } = res
-        console.log('data in api sendTenantToEdit: ', data)
         browserHistory.push('/tenants')
       })
       .catch(console.error)
@@ -46,7 +45,27 @@ const API = {
         let { data } = res
         ServerActions.receiveAllProperties(data)
       })
+  },
+
+  sendPropertyToEdit(editedProperty, propertyId) {
+    put(`/api/properties/edit/${propertyId}`, editedProperty)
+      .then(res => {
+        let { data } = res
+        browserHistory.push('/properties')
+      })
+      .catch(console.error)
+  },
+
+  deleteProperty(propertyId) {
+    axios.delete(`/api/properties/${propertyId}`)
+      .then(res => {
+        let { data } = res
+        console.log('data in api sendPropertyToEdit: ', data)
+        ServerActions.receiveAllProperties(data)
+      })
+      .catch(console.error)
   }
+  
   
 }
 

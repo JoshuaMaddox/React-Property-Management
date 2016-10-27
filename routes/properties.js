@@ -15,13 +15,33 @@ router.route('/')
       .catch(err => { res.status(400).send(err) })
   })
 
+router.route('/edit/:id')
+  .put((req, res) => {
+    Property.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true})
+    .then(property => {
+      res.send(property)
+    })
+    .catch(err => {
+      res.status(400).send(err)
+    })
+})
+
 router.route('/:id')
   .get((req, res) => {
     Property.findById(req.params.id)
       .populate('tenants')
       .then(property => res.send(property))
       .catch(err => res.status(400).send(err))
-  }) 
+  })
+  .delete((req, res) => {
+    Property.findByIdAndRemove(req.params.id)
+      .then(client => client.save())
+      .then(
+        Property.find()
+        .then(properties => res.send(properties))
+      )
+      .catch(err => res.status(400).send(err))
+  })
 
 router.put('/:PropertyId/addProperty/:PropertyId', (req, res) => {
   let { PropertyId, tenantId } = req.params;

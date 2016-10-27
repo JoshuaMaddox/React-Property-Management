@@ -9,6 +9,10 @@ const ToAPIActions = {
     API.getAllTenants()
   },
 
+  sendTenantToEdit(editedTenant, tenantId) {
+    API.sendTenantToEdit(editedTenant, tenantId)
+  },
+
   sendNewProperty(newProperty) {
     API.sendNewProperty(newProperty)
   },
@@ -17,8 +21,13 @@ const ToAPIActions = {
     API.getAllProperties()
   },
 
-  sendTenantToEdit(editedTenant, tenantId) {
-    API.sendTenantToEdit(editedTenant, tenantId)
+  sendPropertyToEdit(editedProperty, propertyId) {
+    API.sendPropertyToEdit(editedProperty, propertyId)
+  },
+
+  deleteProperty(propertyId) {
+    API.deleteProperty(propertyId)
   }
+
 }
 export default ToAPIActions

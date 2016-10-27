@@ -12,6 +12,11 @@ const propertySchema = new Schema({
   tenants: [{ type: Schema.Types.ObjectId, ref: 'Tenant' }]
 })
 
+// propertySchema.statics.removeAndSendAll = function(propertyId) {
+//   this.findByIdAndRemove(propertyId)
+//     .then( () => this.find() )
+// }
+
 const Property = mongoose.model('Property', propertySchema)
 
 module.exports = Property

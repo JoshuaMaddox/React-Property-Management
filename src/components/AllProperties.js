@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import ToAPIActions from '../actions/ToAPIActions'
+import ServerActions from '../actions/ServerActions'
 import PropertiesStore from '../stores/PropertiesStore'
 
 export default class AllProperties extends Component {
@@ -34,12 +35,14 @@ export default class AllProperties extends Component {
     browserHistory.push('/')
   }
 
-  editProperty() {
-
+  editProperty(e) {
+    let propertyId = e.target.id
+    ServerActions.getPropertyToEdit(propertyId)
   }
 
-  deleteProperty() {
-    
+  deleteProperty(e) {
+    let propertyId = e.target.id
+    ToAPIActions.deleteProperty(propertyId)
   }
 
   render() {
@@ -63,7 +66,7 @@ export default class AllProperties extends Component {
             <p>{property.landlordPhone}</p>
             <div className="tenantBtns">
               <button id={property._id} onClick={this.editProperty} className='tenantBtn'>Edit</button>
-              <button id={property._id} onCLick={this.deleteProperty} className='tenantBtn'>Delete</button>
+              <button id={property._id} onClick={this.deleteProperty} className='tenantBtn'>Delete</button>
             </div>
           </div>  
         )
