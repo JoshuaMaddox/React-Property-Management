@@ -34,7 +34,7 @@ export default class Layout extends Component {
   }
 
   toLandlordPage() {
-    browserHistory.push('/property')
+    browserHistory.push('properties/property/new')
   }
 
   render() {

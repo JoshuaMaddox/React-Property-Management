@@ -22,7 +22,7 @@ render(
       <Route path = '/tenants' component = { AllTenants }/>  
       <Route path = '/properties' component = { AllProperties }/>  
       <Route path = '/tenants/tenant/:id' component = { EditTenantForm }/>  
-      <Route path = '/properties/edit' component = { EditPropertyForm }/>  
+      <Route path = '/properties/edit/:id' component = { EditPropertyForm }/>  
       <Route path = '/properties/property/:id' component = { PropertySingleView }/> 
       <Route path = '/properties/financials' component = { Financials} />
     </Router>

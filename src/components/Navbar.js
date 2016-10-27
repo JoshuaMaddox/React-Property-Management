@@ -10,7 +10,7 @@ export default class Navbar extends Component {
 
     return (
       <div className='mainNav'>
-        <p className='brandName'>Website  Name</p>
+        <p className='brandName'>Property Manager</p>
         <nav className="navLinks">
           <li className='navItem'><Link to={'/tenants/tenant/new'}>Add Tenant</Link></li>
           <li className='navItem'><Link to={'/tenants'}>View Tenants</Link></li>

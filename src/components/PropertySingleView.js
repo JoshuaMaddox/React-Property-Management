@@ -46,6 +46,7 @@ export default class PropertySingleView extends Component {
       propertyShow = propertyToView.map((property) => {
         return (
           <div id={property._id} className="formFlexBox" key={property._id}>
+            <img className='propertyImage' src={property.image} width='300px'/>
             <p>Name: {property.name}</p>
             <p>Rent Price: {property.rentPrice}</p>
             <p>Address: {property.address}</p>
@@ -54,6 +55,7 @@ export default class PropertySingleView extends Component {
             <p>Landlord Name: {property.landlordName}</p>
             <p>Landlord Phone: {property.landlordPhone}</p>
             <p ref="propertyId" id={property._id}>Id: {property._id}</p>
+            <h2>Add a Tenant Id to add a Tenant to This Property</h2>
             <form onSubmit={this.placeTenant}>
               <input ref='tenantId' type="text" placeholder='Enter a Tenant id to Place a Tenant'/><br />
               <button type='submit' className='mainBtnType'>SUBMIT</button>

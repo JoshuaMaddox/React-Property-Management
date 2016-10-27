@@ -23,7 +23,7 @@ class TenantsStore extends EventEmitter {
               return
             }
           })
-          browserHistory.push('/tenants/edit')
+          browserHistory.push(`/tenants/tenant/${action.payload.tenantId}`)
           this.emit('CHANGE')
           break
       }

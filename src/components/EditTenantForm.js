@@ -60,11 +60,15 @@ export default class EditTenantForm extends Component {
       tenantShow = tenantToEdit.map((tenant) => {
         return (
           <div className="formFlexBox" key={tenant._id}>
+            <label>First Name</label>
             <input type="text" ref='first' className="formInput" defaultValue={tenant.name.first}/>
+            <label>Last Name</label>
             <input type="text" ref='last' className="formInput" defaultValue={tenant.name.last}/>
             <label>Expected Monthly Rent</label>
             <input type="number" ref='rent' defaultValue={tenant.expectedRentPrice}/>
+            <label>Email Address</label>
             <input type="text" ref='email' className="formInput" defaultValue={tenant.email}/>
+            <label>Phone</label>
             <input type="text" ref='phone' className="formInput" defaultValue={tenant.phone}/>
             <label>Expected Move In Date</label>
             <input type="date" ref='moveIn' className="formInput" defaultValue={tenant.moveInDate}/>

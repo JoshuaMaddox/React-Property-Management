@@ -43,7 +43,7 @@ const API = {
     put(`/api/properties/${propId}/addTenant/${tenId}`)
       .then(res => {
         let { data } = res
-        browserHistory.push('')
+        browserHistory.push('/properties')
       })
   },
 
@@ -51,6 +51,7 @@ const API = {
     put(`/api/properties/${propertyId}/removeTenant/${tenantId}`)
       .then(res => {
         let { data } = res
+        console.log('Am I getting all properties?: ', data)
         ServerActions.receiveAllProperties(data)
       })
   },

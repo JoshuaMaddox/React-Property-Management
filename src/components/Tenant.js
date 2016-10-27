@@ -38,11 +38,15 @@ export default class Tenant extends Component {
       <div className="mainRow">
         <Navbar />
          <div className="formFlexBox">
+          <label>First Name</label>
           <input type="text" ref='first' className="formInput" placeholder='First Name'/>
+          <label>Last Name</label>
           <input type="text" ref='last' className="formInput" placeholder='Last Name'/>
           <label>Expected Monthly Rent</label>
           <input type="number" ref='rent' className="formInput"/>
+          <label>Email Address</label>
           <input type="text" ref='email' className="formInput" placeholder='Email Address'/>
+          <label>Phone</label>
           <input type="text" ref='phone' className="formInput" placeholder='Phone Number'/>
           <label>Expected Move In Date</label>
           <input type="date" ref='moveIn' className="formInput" placeholder='Expected Move In Date'/>

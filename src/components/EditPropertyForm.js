@@ -36,13 +36,14 @@ export default class EditPropertyForn extends Component {
   editProperty(e) {
     e.preventDefault()
     let propertyId = e.target.id
-    const { name, rentPrice, address, bedrooms, bathrooms, landlordName, landlordPhone } = this.refs
+    const { name, rentPrice, imageUrl, address, bedrooms, bathrooms, landlordName, landlordPhone } = this.refs
     let editedProperty = {
       name: name.value,
       rentPrice: parseInt(rentPrice.value),
       address: address.value,
       bedrooms: bedrooms.value,
       bathrooms: bathrooms.value,
+      image: imageUrl.value,
       landlordName: landlordName.value,
       landlordPhone: landlordPhone.value
     }
@@ -60,19 +61,21 @@ export default class EditPropertyForn extends Component {
       propertyShow = propertyToEdit.map((property) => {
         return (
           <div className="formFlexBox" key={property._id}>
-            <label>Expected Move In Date</label>
+            <label>Property Name</label>
             <input type="text" ref='name' className="formInput" defaultValue={property.name}/>
             <label>Rent Price</label>
             <input type="number" ref='rentPrice' className="formInput" defaultValue={property.rentPrice}/>
-            <label>Expected Move In Date</label>
+            <label>Property Address</label>
             <input type="text" ref='address' defaultValue={property.address}/>
-            <label>Expected Move In Date</label>
+            <label>No. of Bedrooms</label>
             <input type="text" ref='bedrooms' className="formInput" defaultValue={property.bedrooms}/>
-            <label>Expected Move In Date</label>
+            <label>No. of Bathrooms</label>
             <input type="text" ref='bathrooms' className="formInput" defaultValue={property.bathrooms}/>
-            <label>Expected Move In Date</label>
+            <label>Image Url</label>
+            <input type="text" ref='imageUrl' className="formInput" defaultValue={property.image}/>
+            <label>Landlord Name</label>
             <input type="text" ref='landlordName' className="formInput" defaultValue={property.landlordName}/>
-            <label>Expected Move Out Date</label>
+            <label>Landlord Phone</label>
             <input type="text" ref='landlordPhone' className="formInput" defaultValue={property.landlordPhone}/>
             <button id={property._id} className='mainBtnType' onClick={this.editProperty}>SUBMIT EDIT</button>
           </div>  

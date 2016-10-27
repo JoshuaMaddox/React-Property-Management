@@ -5,6 +5,7 @@ const propertySchema = new Schema({
   name: { type: String, required: true },
   rentPrice: { type: Number, required: true},
   address: {type: String},
+  image: {type: String},
   bedrooms: {type: String},
   bathrooms: {type: String},
   landlordName: {type: String},

@@ -70,6 +70,7 @@ router.put('/:propertyId/removeTenant/:tenantId', (req, res) => {
     .then(savedProperty => savedProperty.save())
     .then(
       Property.find()
+        .populate('tenants')
         .then(properties => res.send(properties))
     )
     .catch(err => {

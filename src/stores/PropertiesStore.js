@@ -14,6 +14,7 @@ class PropertiesStore extends EventEmitter {
       switch(action.type) {
         case 'RECEIVE_ALL_PROPERTIES':
           _allProperties = action.payload.allProperties
+          console.log('Just Received Props to the store: ', _allProperties)
           this.emit('CHANGE')
           break
         case 'RECEIVE_PROPERTY_ID':

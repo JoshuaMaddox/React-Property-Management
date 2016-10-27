@@ -41,7 +41,7 @@ export default class AllProperties extends Component {
   editProperty(e) {
     let propertyId = e.target.id
     ServerActions.getPropertyToEdit(propertyId)
-    browserHistory.push('/properties/edit')
+    browserHistory.push(`/properties/edit/${propertyId}`)
   }
 
   deleteProperty(e) {
@@ -60,6 +60,7 @@ export default class AllProperties extends Component {
     let propertyId = document.getElementById(tenantId)
     propertyId = propertyId.dataset.propertyid
     ToAPIActions.removeTenantFromProperty(tenantId, propertyId)
+    browserHistory.push(`/properties`)
   }
 
   render() {
