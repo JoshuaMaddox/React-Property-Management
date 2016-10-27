@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router'
 import ToAPIActions from '../actions/ToAPIActions'
 import ServerActions from '../actions/ServerActions'
 import TenantsStore from '../stores/TenantsStore'
+import Navbar from './Navbar'
 
 export default class Tenent extends Component {
   constructor() {
@@ -77,6 +78,7 @@ export default class Tenent extends Component {
 
     return (
       <div className="mainRow">
+      <Navbar />
         {tenantsShow}
       </div>
     )

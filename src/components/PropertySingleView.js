@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import ToAPIActions from '../actions/ToAPIActions'
 import PropertiesStore from '../stores/PropertiesStore'
+import Navbar from './Navbar'
 
 export default class PropertySingleView extends Component {
   constructor() {
@@ -66,6 +67,7 @@ export default class PropertySingleView extends Component {
 
     return (
       <div className="mainRow">
+      <Navbar />
         {propertyShow}
       </div>
     )

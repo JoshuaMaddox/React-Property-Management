@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import ToAPIActions from '../actions/ToAPIActions'
 import TenantsStore from '../stores/TenantsStore'
+import Navbar from './Navbar'
 
 export default class EditTenantForm extends Component {
   constructor() {
@@ -80,6 +81,7 @@ export default class EditTenantForm extends Component {
 
     return (
       <div className="mainRow">
+      <Navbar />
         {tenantShow}
       </div>
     )

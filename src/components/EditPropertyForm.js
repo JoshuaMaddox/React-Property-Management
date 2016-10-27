@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import ToAPIActions from '../actions/ToAPIActions'
 import PropertiesStore from '../stores/PropertiesStore'
+import Navbar from './Navbar'
 
 export default class EditPropertyForn extends Component {
   constructor() {
@@ -85,6 +86,7 @@ export default class EditPropertyForn extends Component {
 
     return (
       <div className="mainRow">
+      <Navbar />
         {propertyShow}
       </div>
     )

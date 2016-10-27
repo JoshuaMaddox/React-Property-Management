@@ -34,7 +34,6 @@ const API = {
     axios.delete(`/api/tenants/${tenantId}`)
       .then(res => {
         let { data } = res
-        console.log('data in api deleteTenant: ', data)
         ServerActions.receiveAllTenants(data)
       })
       .catch(console.error)
@@ -45,6 +44,15 @@ const API = {
       .then(res => {
         let { data } = res
         console.log('I am addTenant res in API.js', data)
+      })
+  },
+
+  removeTenantFromProperty(tenantId, propertyId) {
+    put(`/api/properties/${propertyId}/removeTenant/${tenantId}`)
+      .then(res => {
+        let { data } = res
+        console.log('removeTenant data: ', data)
+        ServerActions.receiveAllProperties(data)
       })
   },
 

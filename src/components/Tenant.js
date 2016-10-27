@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import ToAPIActions from '../actions/ToAPIActions'
+import Navbar from './Navbar'
 
 export default class Tenant extends Component {
   constructor() {
@@ -36,6 +37,7 @@ export default class Tenant extends Component {
 
     return (
       <div className="mainRow">
+        <Navbar />
         <h1>Tenent Page</h1>
           <button className='mainBtnType' onClick={this.returnHome}>Home</button>
          <div className="formFlexBox">

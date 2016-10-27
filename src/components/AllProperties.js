@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router'
 import ToAPIActions from '../actions/ToAPIActions'
 import ServerActions from '../actions/ServerActions'
 import PropertiesStore from '../stores/PropertiesStore'
+import Navbar from './Navbar'
 
 export default class AllProperties extends Component {
   constructor() {
@@ -15,6 +16,7 @@ export default class AllProperties extends Component {
     this.editProperty = this.editProperty.bind(this)
     this.deleteProperty = this.deleteProperty.bind(this)
     this.viewProperty = this.viewProperty.bind(this)
+    this.removeTenant = this.removeTenant.bind(this)
   }
 
   componentWillMount() {
@@ -53,6 +55,13 @@ export default class AllProperties extends Component {
     browserHistory.push(`/properties/property/${propertyId}`)
   }
 
+  removeTenant(e) {
+    let tenantId = e.target.id
+    let propertyId = document.getElementById(tenantId)
+    propertyId = propertyId.dataset.propertyid
+    ToAPIActions.removeTenantFromProperty(tenantId, propertyId)
+  }
+
   render() {
 
     const { allProperties } = this.state
@@ -66,22 +75,23 @@ export default class AllProperties extends Component {
           console.log('property.tenants: ', property.tenants)
           tenantsBtns = property.tenants.map((tenant) => {
             return (
-              <button id={tenant._id} className="tenantBtns">{tenant.name.first} {tenant.name.last}</button>
+              <button key={tenant._id} id={tenant._id} data-propertyId={property._id} onClick={this.removeTenant} className="tenantBtns">{tenant.name.first} {tenant.name.last}</button>
             )
           }) 
         }}
         return (
           <div className="tenantContainer" key={property._id}>
             <div className="nameContainer">
-              <p>{property.name}</p>
+              <p>Name of Property: {property.name}</p>
             </div>
-            <p>{property.rentPrice}</p>
-            <p>{property.address}</p>
-            <p>{property.bedrooms}</p>
-            <p>{property.bathrooms}</p>
-            <p>{property.landlordName}</p>
-            <p>{property.landlordPhone}</p>
-            {tenantsBtns ? tenantsBtns : <div></div>}
+            <p>Rent Price: {property.rentPrice}</p>
+            <p>Address: {property.address}</p>
+            <p>Bedrooms: {property.bedrooms}</p>
+            <p>Bathrooms: {property.bathrooms}</p>
+            <p>Landlord's Name: {property.landlordName}</p>
+            <p>Landlord's Phone: {property.landlordPhone}</p>
+            <p>Tenants Living in This Property:</p>
+            {tenantsBtns ? tenantsBtns : <p>Currently No Tenants</p>}
             <div className="tenantBtns">
               <button id={property._id} onClick={this.editProperty} className='tenantBtn'>Edit</button>
               <button id={property._id} onClick={this.deleteProperty} className='tenantBtn'>Delete</button>
@@ -96,6 +106,7 @@ export default class AllProperties extends Component {
 
     return (
       <div className="mainRow">
+      <Navbar />
         {propertiesShow}
       </div>
     )

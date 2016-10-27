@@ -16,8 +16,8 @@ render(
   <div className='container'>
     <Router history = { browserHistory }>
       <Route path = '/' component = { Layout }/>  
-      <Route path = '/tenants/new' component = { Tenant }/>  
-      <Route path = '/property' component = { Property }/>  
+      <Route path = '/tenants/tenant/new' component = { Tenant }/>  
+      <Route path = '/properties/property/new' component = { Property }/>  
       <Route path = '/tenants' component = { AllTenants }/>  
       <Route path = '/properties' component = { AllProperties }/>  
       <Route path = '/tenants/edit' component = { EditTenantForm }/>  

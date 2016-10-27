@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import SomeStore from '../stores/SomeStore'
-import { browserHistory } from 'react-router'
+import { browserHistory, Link } from 'react-router'
+import Navbar from './Navbar'
+
 
 export default class Layout extends Component {
   constructor() {
@@ -39,6 +41,7 @@ export default class Layout extends Component {
 
     return (
       <div className="mainRow">
+      <Navbar />
         <h1>Which Are You?</h1>
         <div className="flexBoxRow">
           <button className="mainBtn" onClick={this.toClientPage}>Tenant</button>

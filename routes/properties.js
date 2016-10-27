@@ -45,15 +45,32 @@ router.route('/:id')
       .catch(err => res.status(400).send(err))
   })
 
+router.put('/:propertyId/removeTenant/:tenantId', (req, res) => {
+  let { propertyId, tenantId } = req.params
+  Property.findById(propertyId)
+    .then(property => {
+      property.tenants.forEach((tenant, i) => {
+        if(tenant == tenantId) {
+          property.tenants.splice(i, 1)
+        } 
+      })
+      return property.save()
+    })
+    .then(savedProperty => savedProperty.save())
+    .then(
+      Property.find()
+        .then(properties => res.send(properties))
+    )
+    .catch(err => {
+      res.status(400).send(err)
+    })
+})
 
 router.put('/:propertyId/addTenant/:tenantId', (req, res) => {
   let { propertyId, tenantId } = req.params;
-  console.log('propId: ', propertyId)
-  console.log('tenId: ', tenantId)
   Property.findById(propertyId)
     .then( property => {
       property.tenants.push(tenantId)
-      console.log('property.tenants: ', property.tenants)
       return property.save()
     })
     .then(savedProperty => {

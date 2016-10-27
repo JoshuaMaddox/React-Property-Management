@@ -21,6 +21,10 @@ const ToAPIActions = {
     API.placeTenant(propId, tenId)
   },
 
+  removeTenantFromProperty(tenantId, propertyId){
+    API.removeTenantFromProperty(tenantId, propertyId)
+  },
+
   sendNewProperty(newProperty) {
     API.sendNewProperty(newProperty)
   },
