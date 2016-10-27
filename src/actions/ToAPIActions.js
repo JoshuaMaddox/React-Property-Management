@@ -13,6 +13,14 @@ const ToAPIActions = {
     API.sendTenantToEdit(editedTenant, tenantId)
   },
 
+  deleteTenant(tenantId) {
+    API.deleteTenant(tenantId)
+  },
+
+  placeTenant(propId, tenId) {
+    API.placeTenant(propId, tenId)
+  },
+
   sendNewProperty(newProperty) {
     API.sendNewProperty(newProperty)
   },

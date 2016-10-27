@@ -30,6 +30,24 @@ const API = {
       .catch(console.error)
   },
 
+  deleteTenant(tenantId) {
+    axios.delete(`/api/tenants/${tenantId}`)
+      .then(res => {
+        let { data } = res
+        console.log('data in api deleteTenant: ', data)
+        ServerActions.receiveAllTenants(data)
+      })
+      .catch(console.error)
+  },
+
+  placeTenant(propId, tenId) {
+    put(`/api/properties/${propId}/addTenant/${tenId}`)
+      .then(res => {
+        let { data } = res
+        console.log('I am addTenant res in API.js', data)
+      })
+  },
+
   sendNewProperty(newProperty) {
     post(`/api/properties`, newProperty)
       .then(res => {
@@ -60,7 +78,6 @@ const API = {
     axios.delete(`/api/properties/${propertyId}`)
       .then(res => {
         let { data } = res
-        console.log('data in api sendPropertyToEdit: ', data)
         ServerActions.receiveAllProperties(data)
       })
       .catch(console.error)

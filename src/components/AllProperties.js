@@ -14,6 +14,7 @@ export default class AllProperties extends Component {
     this.returnHome = this.returnHome.bind(this)
     this.editProperty = this.editProperty.bind(this)
     this.deleteProperty = this.deleteProperty.bind(this)
+    this.viewProperty = this.viewProperty.bind(this)
   }
 
   componentWillMount() {
@@ -38,6 +39,7 @@ export default class AllProperties extends Component {
   editProperty(e) {
     let propertyId = e.target.id
     ServerActions.getPropertyToEdit(propertyId)
+    browserHistory.push('/properties/edit')
   }
 
   deleteProperty(e) {
@@ -45,14 +47,29 @@ export default class AllProperties extends Component {
     ToAPIActions.deleteProperty(propertyId)
   }
 
+  viewProperty(e) {
+    let propertyId = e.target.id
+    ServerActions.getPropertyToEdit(propertyId)
+    browserHistory.push(`/properties/property/${propertyId}`)
+  }
+
   render() {
 
     const { allProperties } = this.state
 
     let propertiesShow; 
+    let tenantsBtns;
 
     if(allProperties) {
       propertiesShow = allProperties.map((property) => {
+        {if(property.tenants) {
+          console.log('property.tenants: ', property.tenants)
+          tenantsBtns = property.tenants.map((tenant) => {
+            return (
+              <button id={tenant._id} className="tenantBtns">{tenant.name.first} {tenant.name.last}</button>
+            )
+          }) 
+        }}
         return (
           <div className="tenantContainer" key={property._id}>
             <div className="nameContainer">
@@ -64,9 +81,11 @@ export default class AllProperties extends Component {
             <p>{property.bathrooms}</p>
             <p>{property.landlordName}</p>
             <p>{property.landlordPhone}</p>
+            {tenantsBtns ? tenantsBtns : <div></div>}
             <div className="tenantBtns">
               <button id={property._id} onClick={this.editProperty} className='tenantBtn'>Edit</button>
               <button id={property._id} onClick={this.deleteProperty} className='tenantBtn'>Delete</button>
+              <button id={property._id} onClick={this.viewProperty} className='tenantBtn'>View</button>
             </div>
           </div>  
         )

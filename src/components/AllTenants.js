@@ -42,6 +42,7 @@ export default class Tenent extends Component {
 
   deleteTenant(e) {
     let tenantId = e.target.id
+    ToAPIActions.deleteTenant(tenantId)
   }
 
   render() {
@@ -62,9 +63,10 @@ export default class Tenent extends Component {
             <p>{tenant.phone}</p>
             <p>{tenant.moveInDate}</p>
             <p>{tenant.moveOutDate}</p>
+            <p>{tenant._id}</p>
             <div className="tenantBtns">
               <button id={tenant._id} onClick={this.editTenant} className='tenantBtn'>Edit</button>
-              <button id={tenant._id} className='tenantBtn'>Delete</button>
+              <button id={tenant._id} onClick={this.deleteTenant} className='tenantBtn'>Delete</button>
             </div>
           </div>  
         )

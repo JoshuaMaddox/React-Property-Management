@@ -18,10 +18,10 @@ export default class Property extends Component {
     const { name, rentPrice, address, bedrooms, bathrooms, landlordName, landlordPhone } = this.refs
     let newProperty = {
       name: name.value,
-      rentPrice: parseInt(rentPrice.value),
       address: address.value,
       bedrooms: bedrooms.value,
       bathrooms: bathrooms.value,
+      rentPrice: parseInt(rentPrice.value),
       landlordName: landlordName.value,
       landlordPhone: landlordPhone.value
     }

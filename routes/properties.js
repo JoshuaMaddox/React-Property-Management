@@ -6,6 +6,7 @@ const Property = require('../models/Property')
 router.route('/')
   .get((req, res) => {
     Property.find()
+      .populate('tenants')
       .then(properties => { res.send(properties) })
       .catch(err => { res.status(400).send(err) })
   })
@@ -18,6 +19,7 @@ router.route('/')
 router.route('/edit/:id')
   .put((req, res) => {
     Property.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true})
+    .populate('tenants')
     .then(property => {
       res.send(property)
     })
@@ -35,7 +37,7 @@ router.route('/:id')
   })
   .delete((req, res) => {
     Property.findByIdAndRemove(req.params.id)
-      .then(client => client.save())
+      .then(property => property.save())
       .then(
         Property.find()
         .then(properties => res.send(properties))
@@ -43,11 +45,15 @@ router.route('/:id')
       .catch(err => res.status(400).send(err))
   })
 
-router.put('/:PropertyId/addProperty/:PropertyId', (req, res) => {
-  let { PropertyId, tenantId } = req.params;
-  Property.findById(PropertyId)
+
+router.put('/:propertyId/addTenant/:tenantId', (req, res) => {
+  let { propertyId, tenantId } = req.params;
+  console.log('propId: ', propertyId)
+  console.log('tenId: ', tenantId)
+  Property.findById(propertyId)
     .then( property => {
-      Property.tenants.push(tenantId)
+      property.tenants.push(tenantId)
+      console.log('property.tenants: ', property.tenants)
       return property.save()
     })
     .then(savedProperty => {

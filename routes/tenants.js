@@ -17,6 +17,23 @@ router.route('/')
       .catch(err => { res.status(400).send(err) })
   })
 
+  router.route('/:id')
+    .get((req, res) => {
+      Tenant.findById(req.params.id)
+        .populate('tenants')
+        .then(tenant => res.send(tenant))
+        .catch(err => res.status(400).send(err))
+    })
+    .delete((req, res) => {
+      Tenant.findByIdAndRemove(req.params.id)
+        .then(tenant => tenant.save())
+        .then(
+          Tenant.find()
+          .then(tenants => res.send(tenants))
+        )
+        .catch(err => res.status(400).send(err))
+  })
+    
   router.route('/edit/:id')
     .put((req, res) => {
       Tenant.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true})
